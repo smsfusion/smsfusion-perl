@@ -223,7 +223,8 @@ Each of these calls returns a hashref with various useful pieces of information.
 
 To load the API packages:
 ```perl
-use WWW::SwaggerClient::DefaultApi;
+use WWW::SwaggerClient::HLRApi;
+use WWW::SwaggerClient::SMSApi;
 
 ```
 
@@ -233,6 +234,7 @@ use WWW::SwaggerClient::Object::HLRCallback;
 use WWW::SwaggerClient::Object::HLRError;
 use WWW::SwaggerClient::Object::HLRResult;
 use WWW::SwaggerClient::Object::OutOfCredit;
+use WWW::SwaggerClient::Object::SMSResult;
 
 ````
 
@@ -244,13 +246,15 @@ use lib 'lib';
 use strict;
 use warnings;
 # load the API package
-use WWW::SwaggerClient::DefaultApi;
+use WWW::SwaggerClient::HLRApi;
+use WWW::SwaggerClient::SMSApi;
 
 # load the models
 use WWW::SwaggerClient::Object::HLRCallback;
 use WWW::SwaggerClient::Object::HLRError;
 use WWW::SwaggerClient::Object::HLRResult;
 use WWW::SwaggerClient::Object::OutOfCredit;
+use WWW::SwaggerClient::Object::SMSResult;
 
 # for displaying the API response data
 use Data::Dumper;
@@ -262,7 +266,7 @@ $WWW::SwaggerClient::Configuration::api_key->{'key'} = 'YOUR_API_KEY';
 # uncomment below to setup prefix (e.g. Bearer) for API key, if needed
 #$WWW::SwaggerClient::Configuration::api_key_prefix->{'key'} = 'Bearer';
 
-my $api_instance = WWW::SwaggerClient::DefaultApi->new();
+my $api_instance = WWW::SwaggerClient::HLRApi->new();
 my $key = 'key_example'; # string | API Key as generated from the <a href='https://www.smsfusion.com.au/admin/api/'>admin panel</a>
 my $num = 'num_example'; # string | A single phone number or <a href='https://www.smsfusion.com.au/help/msisdn/'>MSDISDN</a>
 my $cc = 'cc_example'; # string | 2 character country code <a href='https://en.wikipedia.org/wiki/ISO_3166-2'>ISO 3166-2</a> for formatting local numbers internationally
@@ -272,19 +276,20 @@ eval {
     print Dumper($result);
 };
 if ($@) {
-    warn "Exception when calling DefaultApi->get_hlr: $@\n";
+    warn "Exception when calling HLRApi->get_hlr: $@\n";
 }
 
 ```
 
 # DOCUMENTATION FOR API ENDPOINTS
 
-All URIs are relative to *http://api.smsfusion.com.au/*
+All URIs are relative to *https://api.smsfusion.com.au/*
 
 Class | Method | HTTP request | Description
 ------------ | ------------- | ------------- | -------------
-*DefaultApi* | [**get_hlr**](docs/DefaultApi.md#get_hlr) | **GET** /hlr/ | HLR number lookup
-*DefaultApi* | [**get_hlr_callback**](docs/DefaultApi.md#get_hlr_callback) | **GET** /hlr-callback/ | HLR number lookup with results going to a callback URL
+*HLRApi* | [**get_hlr**](docs/HLRApi.md#get_hlr) | **GET** /hlr/ | HLR number lookup
+*HLRApi* | [**get_hlr_callback**](docs/HLRApi.md#get_hlr_callback) | **GET** /hlr-callback/ | HLR number lookup with results going to a callback URL
+*SMSApi* | [**send_sms**](docs/SMSApi.md#send_sms) | **GET** /sms/ | Send an SMS
 
 
 # DOCUMENTATION FOR MODELS
@@ -292,6 +297,7 @@ Class | Method | HTTP request | Description
  - [WWW::SwaggerClient::Object::HLRError](docs/HLRError.md)
  - [WWW::SwaggerClient::Object::HLRResult](docs/HLRResult.md)
  - [WWW::SwaggerClient::Object::OutOfCredit](docs/OutOfCredit.md)
+ - [WWW::SwaggerClient::Object::SMSResult](docs/SMSResult.md)
 
 
 # DOCUMENTATION FOR AUTHORIZATION

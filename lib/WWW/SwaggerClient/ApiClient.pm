@@ -46,7 +46,7 @@ sub _new_instance
     my $class = shift;
     my (%args) = (
         'ua' => LWP::UserAgent->new,
-        'base_url' => 'http://api.smsfusion.com.au/',
+        'base_url' => 'https://api.smsfusion.com.au/',
         @_
     );
   
